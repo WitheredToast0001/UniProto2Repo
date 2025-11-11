@@ -6,6 +6,7 @@ public class PlayerControllerX : MonoBehaviour
 {
     public GameObject dogPrefab;
     public float fireCooldown = 1.0f;
+    public bool canSpawn = true;
 
     void Start()
     {
@@ -27,17 +28,20 @@ public class PlayerControllerX : MonoBehaviour
     {
         while (true)
         {
-            bool canSpawn = true;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && canSpawn)
             {
-                if (canSpawn == true)    
-                {
-                    Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
-                    bool CanSpawn = false; 
-                    
-                }
+                Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+                bool canSpawn = false;
+
             }
             yield return new WaitForSeconds(fireCooldown);
+
+        }
+    }
+    IEnumerator SpawnADog()
+    {
+        while (true)
+        {
 
         }
     }
